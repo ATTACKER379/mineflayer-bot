@@ -24,9 +24,7 @@ function startBot() {
 
   bot.on('messagestr', (message) => {
     console.log(message);
-    if (message.includes('/register')) {
-      bot.chat(/register ${config.password} ${config.password});
-    }
+   
     if (message.includes('/login')) {
       bot.chat(/login ${config.loginPassword});
     }
