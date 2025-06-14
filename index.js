@@ -24,19 +24,21 @@ function startBot() {
 
   bot.on('messagestr', (message) => {
     console.log(message);
-   
+    if (message.includes('/register')) {
+      bot.chat(`/register ${config.password} ${config.password}`);
+    }
     if (message.includes('/login')) {
-      bot.chat(/login ${config.loginPassword});
+      bot.chat(`/login ${config.loginPassword}`);
     }
   });
 
   bot.on('chat', (username, message) => {
     if (username === config.controller) {
-      if (message.startsWith('+ ')) {
-        const toSay = message.replace('+ ', '');
+      if (message.startsWith('= ')) {
+        const toSay = message.replace('= ', '');
         bot.chat(toSay);
       } else if (message === 'tpat1') {
-        bot.chat(/tpa ${config.controller});
+        bot.chat(`/tpa ${config.controller}`);
       }
     }
   });
@@ -50,7 +52,7 @@ function startBot() {
 
   bot.on('death', () => {
     bot.chat('/back');
-    bot.chat(/w ${config.controller} AT_OROL_1 uldi);
+    bot.chat(`/w ${config.controller} AT_OROL_1 uldi`);
   });
 
   bot.on('spawn', () => {
